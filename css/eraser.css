@@ -1,0 +1,241 @@
+header {
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    color: white;
+    z-index: 999;
+}
+footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    color: gray;
+    z-index: 999;
+}
+
+#map { 
+    height: 100%; 
+}
+
+@media only screen and (max-width: 900px) {
+    .menu {
+        display: none;
+    }
+}
+
+.menu {
+    background-color: white;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 0.4em;
+    left: 1em;
+    top: 1em;
+    position: absolute;
+    z-index: 800;
+    width: 20em;
+    text-transform: none;
+}
+
+
+.menu .vertical {
+    opacity: 0;
+    background-color: whitesmoke;
+    height: 0;
+    overflow: hidden;
+
+    transition: height 0.25s ease-out;
+}
+
+.menu .vertical.active {
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    padding: 0.4em;
+    background-color: whitesmoke;
+
+    transition: height 0.25s ease-out;
+    
+    height: 20em;
+}
+
+.menu .horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0em 0em;
+    padding: 0.3em 0.5em;
+}
+
+.menu .horizontal.active {
+    background-color: antiquewhite;
+    border: 1px dashed orange;
+}
+
+.menu .horizontal:hover {
+    background-color: antiquewhite;
+}
+
+.menu h2 {
+    padding: 0.5em 1em;
+    margin: 0;
+    font-size: larger;
+    border: 0.5px solid whitesmoke;
+    color: black;
+}
+.menu h3 {
+    padding: 0.5em 0.5em;
+    margin: 0;
+    font-size:small;
+    border: 0.5px solid whitesmoke;
+    color: black;
+}
+
+.menu h2:hover {
+    background-color: antiquewhite;
+}
+
+.menu a, p, label, legend {
+    padding: 0.3em;
+    margin: 0;
+    color: black;;
+}
+
+/* .menu input.slider {
+    width: 12em;
+    height: 1em;
+    -webkit-appearance: none;
+    appearance: none;
+    background: orange;
+    outline: none;
+    opacity: 0.5;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+} */
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 12em; /* Full-width */
+    height: 0.8em; /* Specified height */
+    background: orange; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.5; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+
+.slider.color {
+    background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet, red);
+}
+.slider.transparency {
+    background: none;
+    background-image: linear-gradient(to right, #80808040, white, black);
+}
+.slider.saturate {
+    background-image: linear-gradient(to right, white, orange, red);
+}
+  
+  /* Mouse-over effects */
+  .slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+  }
+  
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 1em; /* Set a specific slider handle width */
+    height: 1em; /* Slider handle height */
+    background: #04AA6D; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 1.2em; /* Set a specific slider handle width */
+    height: 1.2em; /* Slider handle height */
+    background: #04AA6D; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+  }
+
+
+.menu #importFile {
+    border: 1px dashed gray;
+}
+
+.menu #importFile.active {
+    border: 1px solid green;
+}
+
+.menu #importFile.error {
+    border: 1px solid red;
+}
+
+.leaflet-control-container {
+    background-color: white;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 0.4em;
+}
+
+select {
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 0.2em;
+    margin: 0.4em;
+}
+
+#rails {
+    width: 15em;
+}
+
+#startStation, #endStation {
+    width: 6em;
+}
+
+button#tokml {
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    padding: 0.5em;
+    margin-top: 1em;
+    text-align: center;
+    background-color: #4CAF50;
+    border: 1px solid #4CAF50;
+    border-radius: 0.2em;
+    color: white;
+}
+
+button:hover {
+    background-color: #077a0d;
+    color: white;
+}
+
+.bottom2top {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+}
+
+canvas.fogLayer  {
+    outline: 10px solid green;
+    transform-origin: left top;
+    /* border: 10px solid green; */
+}
+
+#circularcursor {
+    /* display: none; */
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #f00;
+    /* border: 1px solid white; */
+    border-radius: 50%;
+    top: var(--y, 0);
+    left: var(--x, 0);
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+    pointer-events: none;
+    z-index: 900;
+}
+
+.leaflet-grab {cursor: auto;}
+/* crosshair */
+.leaflet-dragging .leaflet-grab {cursor: move;}
