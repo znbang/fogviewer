@@ -20,7 +20,7 @@
     <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
     <meta name="color-scheme" content="light dark">
 
-    <title> 迷雾橡皮擦 </title>
+    <title>世界迷霧</title>
 
     <!-- jsdeliver -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
@@ -42,102 +42,102 @@
 
 <div id="circularcursor"></div>
 <div id="menu" class="menu">
-    <h2 id="fileTitle"><span i18n="fileTitle">导入/导出</span><small>(F1)</small> </h2>
+    <h2 id="fileTitle"><span i18n="fileTitle">匯入/匯出</span><small>(F1)</small></h2>
     <div id="file" class="vertical active">
         <fieldset id="importFile">
-            <legend i18n="importFile">导入存档</legend>
-            <p id="importMSG" i18n="importMSG"> 把zip格式存档拖到这里</p>
-            <a href="#" i18n="openManually">手动打开(Ctrl+O) </a>
+            <legend i18n="importFile">匯入存檔</legend>
+            <p id="importMSG" i18n="importMSG">把zip格式存檔拖到這裡</p>
+            <a href="#" i18n="openManually">手動開啟(Ctrl+O) </a>
             <input type="file" id="inputFile" style="display:none" accept=".zip">
         </fieldset>
 
         <!-- <div class="horizontal">
-            <a>同步坚果云</a>
+            <a>同步堅果雲</a>
         </div> -->
         <div id="outputAll" class="horizontal" >
-            <label i18n="outputAll">导出全部</label><label id="saveProcess"></label><label> (Ctrl+S)</label>
+            <label i18n="outputAll">匯出全部</label><label id="saveProcess"></label><label>(Ctrl+S)</label>
         </div>
-        <div id="outputEdit" class="horizontal" title="注意：如果有0KB的存档，表示该地图块已经没有数据了，需要覆盖原存档后，再手动删除0KB存档">
-            <label i18n="outputEdit">导出本次修改</label><label> (Ctrl+Shift+S)</label>
+        <div id="outputEdit" class="horizontal" title="注意：如果有0KB的存檔，表該该地圖塊已經沒有資料了，需要覆蓋原存檔後，再手動刪除0KB存檔">
+            <label i18n="outputEdit">匯出本次修改</label><label>(Ctrl+Shift+S)</label>
         </div>
         <div id="clearAll" class="horizontal">
-            <label i18n="clearAll">清理存档 </label><label> (Ctrl+Q)</label>
+            <label i18n="clearAll">清理存檔</label><label> (Ctrl+Q)</label>
         </div>  
     </div>
 
-    <h2 id="showModeTitle"><span i18n="showModeTitle">显示模式</span><small>(F2)</small> </h2>
+    <h2 id="showModeTitle"><span i18n="showModeTitle">顯示模式</span><small>(F2)</small></h2>
     <div id="showMode" class="vertical">
         <div class="horizontal">
             <div>
                 <input type="radio" id="fogMode" name="renderMode" value="fog" checked>
-                <label for="fogMode" i18n="fogMode">迷雾模式</label><label>(F)</label><span></span>
+                <label for="fogMode" i18n="fogMode">迷霧模式</label><label>(F)</label><span></span>
             </div>
 
             <div>
                 <input type="radio" id="lineMode" name="renderMode" value="line">
-                <label for="lineMode" i18n="lineMode">实线模式</label><label>(G)</label><span></span>
+                <label for="lineMode" i18n="lineMode">實線模式</label><label>(G)</label><span></span>
             </div>
         </div>    
         <div class="horizontal">
-            <label for="lineWidthSlider" i18n="lineWidth"> 粗细 </label>
-            <input id="lineWidthSlider" class="slider transparency" type="range" min="0.5" max="5" step="0.01"  />
+            <label for="lineWidthSlider" i18n="lineWidth">粗細</label>
+            <input id="lineWidthSlider" class="slider transparency" type="range" min="0.5" max="5" step="0.01" />
         </div>    
         <div class="horizontal">
-            <label for="colorSlider" i18n="color"> 颜色 </label>
-            <input id="colorSlider" class="slider color" type="range" min="0" max="1" step="0.01"  />
+            <label for="colorSlider" i18n="color">顏色</label>
+            <input id="colorSlider" class="slider color" type="range" min="0" max="1" step="0.01" />
         </div>    
         <div class="horizontal">
-            <label for="alphaSlider" i18n="alpha"> 透明度 </label>
-            <input id="alphaSlider" class="slider transparency" type="range" min="0.15" max="1" step="0.01"  />
+            <label for="alphaSlider" i18n="alpha">透明度</label>
+            <input id="alphaSlider" class="slider transparency" type="range" min="0.15" max="1" step="0.01" />
         </div>  
-        <h3  i18n="map"> 地图 </h3>
+        <h3  i18n="map">地圖</h3>
         <div class="horizontal">
-            <label for="mapColorSlider" i18n="color"> 颜色 </label>
-            <input id="mapColorSlider" class="slider color" type="range" min="0" max="360" step="1"  />
-        </div>  
-        <div class="horizontal">
-            <label for="saturateSlider" i18n="saturate"> 饱和度 </label>
-            <input id="saturateSlider" class="slider saturate" type="range" min="0" max="3" step="0.01"  />
+            <label for="mapColorSlider" i18n="color">顏色</label>
+            <input id="mapColorSlider" class="slider color" type="range" min="0" max="360" step="1" />
         </div>  
         <div class="horizontal">
-            <label for="invert" i18n="invert"> 颜色反转 </label>
+            <label for="saturateSlider" i18n="saturate">飽和度</label>
+            <input id="saturateSlider" class="slider saturate" type="range" min="0" max="3" step="0.01" />
+        </div>  
+        <div class="horizontal">
+            <label for="invert" i18n="invert">顏色反轉</label>
             <input id="invert" type="checkbox" />
         </div>  
     </div>
 
-    <h2 id="eraserTitle"><span i18n="eraserTitle">擦除工具</span><small>(F3)</small> </h2>
+    <h2 id="eraserTitle"><span i18n="eraserTitle">擦除工具</span><small>(F3)</small></h2>
     <div id="eraser" class="vertical">
         <div id="eraserDiv" class="horizontal">
-            <label for="circleEraser" i18n="eraser"> 橡皮擦</label>
-            <input id="circleEraser" type="range" min="1" max="100" step="1"  /><label>(E)</label>
+            <label for="circleEraser" i18n="eraser">橡皮擦</label>
+            <input id="circleEraser" type="range" min="1" max="100" step="1" /><label>(E)</label>
         </div>    
         <div id="AIEraser" class="horizontal">
-            <label i18n="AIEraser"> 智能擦除</label><label>(R) </label>
+            <label i18n="AIEraser">智能擦除</label><label>(R)</label>
         </div>
         <div id="revertEraser" class="horizontal">
-            <label i18n="revertEraser"> 撤销</label><label>(Ctrl+Z) </label>
+            <label i18n="revertEraser">撤銷</label><label>(Ctrl+Z)</label>
         </div>
         <div id="ESC" class="horizontal">
-            <label i18n="Escape"> 退出</label><label>(ESC) </label>
+            <label i18n="Escape">退出</label><label>(ESC)</label>
         </div>
     </div> 
 
-    <h2 id="drawTitle"><span i18n="drawTitle">绘制工具 </span><small>(F4)</small> </h2>
+    <h2 id="drawTitle"><span i18n="drawTitle">繪製工具</span><small>(F4)</small></h2>
     <div id="draw" class="vertical">
         <div id="drawLine" class="horizontal">
-            <label i18n="drawLine"> 画线段</label><label>(C) </label>
+            <label i18n="drawLine">畫線段</label><label>(C)</label>
         </div>
         <div id="editLine" class="horizontal">
-            <label i18n="editLine"> 修改线段</label><label>(X) </label>
+            <label i18n="editLine">修改線段</label><label>(X)</label>
         </div>
         <div id="deleteLine" class="horizontal">
-            <label i18n="deleteLine"> 删除线段</label><label>(D) </label>
+            <label i18n="deleteLine">删除線段</label><label>(D)</label>
         </div>
         <div id="drawFinish" class="horizontal">
-            <label i18n="drawFinish"> 保存线段</label><label>(S) </label>
+            <label i18n="drawFinish">保存線段</label><label>(S)</label>
         </div>
         <div id="ESC" class="horizontal">
-            <label i18n="Escape"> 退出</label><label>(ESC) </label>
+            <label i18n="Escape">退出</label><label>(ESC)</label>
         </div>
     </div>
 </div>
