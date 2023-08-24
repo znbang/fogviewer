@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,21 +21,21 @@
 
     <title>世界迷霧</title>
 
-    <!-- jsdeliver -->
+    <!-- unpkg, if not avaiable, change "https://unpkg.com" to "./lib" -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/pako@2.0.4/dist/pako.js"></script>  
-    
+    <script src="https://unpkg.com/pako@2.0.4/dist/pako.min.js"></script>
+
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/eraser.css">
 
-    <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />  
-    <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script> 
+    <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@2.13.0/dist/leaflet-geoman.css" />
+    <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@2.13.0/dist/leaflet-geoman.min.js"></script>
 
-    <!-- <script src="https://unpkg.com/file-saver@2.0.5/dist/FileSaver.min.js"></script> -->
     <script src="https://unpkg.com/jszip@3.10.0/dist/jszip.min.js"></script>
-    
+    <script src="https://unpkg.com/proj4@2.8.0/dist/proj4.js"></script>
 
+    <script src="lib/exif-heic/exif-heic.js"></script>
 </head>
 <body>
 
@@ -52,20 +51,20 @@
         </fieldset>
 
         <!-- <div class="horizontal">
-            <a>同步堅果雲</a>
+            <a>同步堅果雲/a>
         </div> -->
         <div id="outputAll" class="horizontal" >
-            <label i18n="outputAll">匯出全部</label><label id="saveProcess"></label><label>(Ctrl+S)</label>
+            <label i18n="outputAll">匯出全部</label><label id="saveProcess"></label><label> (Ctrl+S)</label>
         </div>
-        <div id="outputEdit" class="horizontal" title="注意：如果有0KB的存檔，表該该地圖塊已經沒有資料了，需要覆蓋原存檔後，再手動刪除0KB存檔">
-            <label i18n="outputEdit">匯出本次修改</label><label>(Ctrl+Shift+S)</label>
+        <div id="outputEdit" class="horizontal" title="注意：如果有0KB的存檔，表示該地圖塊已經沒有資料了，需要覆蓋原存檔後，再手動刪除0KB存檔">
+            <label i18n="outputEdit">匯出本次修改</label><label> (Ctrl+Shift+S)</label>
         </div>
         <div id="clearAll" class="horizontal">
-            <label i18n="clearAll">清理存檔</label><label> (Ctrl+Q)</label>
-        </div>  
+            <label i18n="clearAll">清理存档 </label><label> (Ctrl+Q)</label>
+        </div>
     </div>
 
-    <h2 id="showModeTitle"><span i18n="showModeTitle">顯示模式</span><small>(F2)</small></h2>
+    <h2 id="showModeTitle"><span i18n="showModeTitle">顯示模式</span><small>(F2)</small> </h2>
     <div id="showMode" class="vertical">
         <div class="horizontal">
             <div>
@@ -77,76 +76,104 @@
                 <input type="radio" id="lineMode" name="renderMode" value="line">
                 <label for="lineMode" i18n="lineMode">實線模式</label><label>(G)</label><span></span>
             </div>
-        </div>    
+        </div>
         <div class="horizontal">
-            <label for="lineWidthSlider" i18n="lineWidth">粗細</label>
-            <input id="lineWidthSlider" class="slider transparency" type="range" min="0.5" max="5" step="0.01" />
-        </div>    
+            <label for="lineWidthSlider" i18n="lineWidth"> 粗細 </label>
+            <input id="lineWidthSlider" class="slider transparency" type="range" min="0.5" max="5" step="0.01"  />
+        </div>
         <div class="horizontal">
-            <label for="colorSlider" i18n="color">顏色</label>
-            <input id="colorSlider" class="slider color" type="range" min="0" max="1" step="0.01" />
-        </div>    
+            <label for="colorSlider" i18n="color"> 顏色 </label>
+            <input id="colorSlider" class="slider color" type="range" min="0" max="1" step="0.01"  />        </div>
         <div class="horizontal">
-            <label for="alphaSlider" i18n="alpha">透明度</label>
-            <input id="alphaSlider" class="slider transparency" type="range" min="0.15" max="1" step="0.01" />
-        </div>  
-        <h3  i18n="map">地圖</h3>
+            <label for="alphaSlider" i18n="alpha"> 透明度 </label>
+            <input id="alphaSlider" class="slider transparency" type="range" min="0.15" max="1" step="0.01"  />
+        </div>
+        <h3  i18n="map"> 地圖 </h3>
         <div class="horizontal">
-            <label for="mapColorSlider" i18n="color">顏色</label>
-            <input id="mapColorSlider" class="slider color" type="range" min="0" max="360" step="1" />
-        </div>  
+            <label for="mapColorSlider" i18n="color"> 颜色 </label>
+            <input id="mapColorSlider" class="slider color" type="range" min="0" max="360" step="1"  />
+        </div>
         <div class="horizontal">
-            <label for="saturateSlider" i18n="saturate">飽和度</label>
-            <input id="saturateSlider" class="slider saturate" type="range" min="0" max="3" step="0.01" />
-        </div>  
+            <label for="saturateSlider" i18n="saturate"> 飽和度 </label>
+            <input id="saturateSlider" class="slider saturate" type="range" min="0" max="3" step="0.01"  />
+        </div>
         <div class="horizontal">
-            <label for="invert" i18n="invert">顏色反轉</label>
+            <label for="invert" i18n="invert"> 顏色反轉 </label>
             <input id="invert" type="checkbox" />
-        </div>  
+        </div>
     </div>
 
-    <h2 id="eraserTitle"><span i18n="eraserTitle">擦除工具</span><small>(F3)</small></h2>
+    <h2 id="eraserTitle"><span i18n="eraserTitle">擦除工具</span><small>(F3)</small> </h2>
     <div id="eraser" class="vertical">
         <div id="eraserDiv" class="horizontal">
-            <label for="circleEraser" i18n="eraser">橡皮擦</label>
-            <input id="circleEraser" type="range" min="1" max="100" step="1" /><label>(E)</label>
-        </div>    
+            <label for="circleEraser" i18n="eraser"> 橡皮擦</label>
+            <input id="circleEraser" type="range" min="1" max="100" step="1"  /><label>(E)</label>
+        </div>
         <div id="AIEraser" class="horizontal">
-            <label i18n="AIEraser">智能擦除</label><label>(R)</label>
+            <label i18n="AIEraser"> 智能擦除</label><label>(R) </label>
         </div>
         <div id="revertEraser" class="horizontal">
-            <label i18n="revertEraser">撤銷</label><label>(Ctrl+Z)</label>
+            <label i18n="revertEraser"> 撤銷</label><label>(Ctrl+Z) </label>
         </div>
         <div id="ESC" class="horizontal">
-            <label i18n="Escape">退出</label><label>(ESC)</label>
-        </div>
-    </div> 
-
-    <h2 id="drawTitle"><span i18n="drawTitle">繪製工具</span><small>(F4)</small></h2>
-    <div id="draw" class="vertical">
-        <div id="drawLine" class="horizontal">
-            <label i18n="drawLine">畫線段</label><label>(C)</label>
-        </div>
-        <div id="editLine" class="horizontal">
-            <label i18n="editLine">修改線段</label><label>(X)</label>
-        </div>
-        <div id="deleteLine" class="horizontal">
-            <label i18n="deleteLine">删除線段</label><label>(D)</label>
-        </div>
-        <div id="drawFinish" class="horizontal">
-            <label i18n="drawFinish">保存線段</label><label>(S)</label>
-        </div>
-        <div id="ESC" class="horizontal">
-            <label i18n="Escape">退出</label><label>(ESC)</label>
+            <label i18n="Escape"> 退出</label><label>(ESC) </label>
         </div>
     </div>
+
+    <h2 id="drawTitle"><span i18n="drawTitle">繪製工具 </span><small>(F4)</small> </h2>
+    <div id="draw" class="vertical">
+        <div id="drawLine" class="horizontal">
+            <label i18n="drawLine"> 畫線段</label><label>(C) </label>
+        </div>
+        <div id="editLine" class="horizontal">
+            <label i18n="editLine"> 修改線段</label><label>(X) </label>
+        </div>
+        <div id="deleteLine" class="horizontal">
+            <label i18n="deleteLine"> 删除線段</label><label>(D) </label>
+        </div>
+        <div id="drawFinish" class="horizontal">
+            <label i18n="drawFinish"> 寫入存檔 </label><label>(S) </label>
+        </div>
+        <div id="ESC" class="horizontal">
+            <label i18n="Escape"> 退出</label><label>(ESC) </label>
+        </div>
+    </div>
+
+    <h2 id="photoTitle"><span i18n="photoTitle"> 照片GPS </span><small>(F5)</small> </h2>
+    <div id="photo" class="vertical">
+        <fieldset id="importPhoto">
+            <legend i18n="importPhoto">匯入照片</legend>
+            <p id="importPhotoMsg" i18n="importPhotoMsg"> 把照片拖到這裡</p>
+            <a href="#" i18n="openManually">手動開啟</a>
+            <input type="file" multiple id="inputPhoto" style="display:none" accept="image/*">
+        </fieldset>
+
+        <div id="clearPhotoMarkers" class="horizontal">
+            <label i18n="clearPhotoMarkers"> 清除標記 </label><label></label>
+        </div>
+    </div>
+
+    <h2 id="gpxTitle"><span i18n="gpxTitle"> 匯入GPX/KML </span><small>(F6)</small> </h2>
+    <div id="gpx" class="vertical">
+        <fieldset id="importGPX">
+            <legend i18n="importGPX">匯入GPX/KML</legend>
+            <p id="importGPXMsg" i18n="importGPXMsg"> GPX/KML拖到這裡</p>
+            <a href="#" i18n="openManually">手動開啟</a>
+            <input type="file" multiple id="inputGPX" style="display:none" accept=".gpx, .kml">
+        </fieldset>
+        <div id="saveGPXtoMap" class="horizontal">
+            <label i18n="saveGPXtoMap"> 寫入GPX/KML到存檔 </label><label></label>
+        </div>
+        <div id="clearGPX" class="horizontal">
+            <label i18n="clearGPX"> 清理GPX/KML </label><label></label>
+        </div>
+    </div>
+
 </div>
 <div id="map">
 </div>
 
 <script src="dist/eraser.bundle.js"></script>
 
-<footer>
-</footer>
 </body>
 </html>
