@@ -1883,9 +1883,9 @@
                 minNativeZoom: 2,
                 debug: !1,
                 baseMaps: {
+                    OpenStreet: x,
                     Google: S,
                     Google衛星: w,
-                    OpenStreet: x,
                     OpenRailway: b,
                     // 高德地圖: L.tileLayer.chinaProvider("GaoDe.Normal.Map"),
                     // 高德衛星: L.tileLayer.chinaProvider("GaoDe.Satellite.Map"),
