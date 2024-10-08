@@ -21,7 +21,6 @@
 
     <title>世界迷霧</title>
 
-    <!-- unpkg, if not avaiable, change "https://unpkg.com" to "./lib" -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://unpkg.com/pako@2.0.4/dist/pako.min.js"></script>
@@ -45,9 +44,9 @@
     <div id="file" class="vertical active">
         <fieldset id="importFile">
             <legend i18n="importFile">匯入存檔</legend>
-            <p id="importMSG" i18n="importMSG">把zip格式存檔拖到這裡</p>
+            <p id="importMSG" i18n="importMSG">把zip、fwss格式存檔拖到這裡</p>
             <a href="#" i18n="openManually">手動開啟(Ctrl+O) </a>
-            <input type="file" id="inputFile" style="display:none" accept=".zip">
+            <input type="file" id="inputFile" style="display:none" accept=".zip, .fwss">
         </fieldset>
 
         <!-- <div class="horizontal">
@@ -59,8 +58,11 @@
         <div id="outputEdit" class="horizontal" title="注意：如果有0KB的存檔，表示該地圖塊已經沒有資料了，需要覆蓋原存檔後，再手動刪除0KB存檔">
             <label i18n="outputEdit">匯出本次修改</label><label> (Ctrl+Shift+S)</label>
         </div>
+        <div id="outputAsFwss" class="horizontal" >
+            <label i18n="outputAsFwss">匯出為迷霧快照檔案</label><label id="saveToFwssProcess"></label><label></label>
+        </div>
         <div id="clearAll" class="horizontal">
-            <label i18n="clearAll">清理存档 </label><label> (Ctrl+Q)</label>
+            <label i18n="clearAll">清理存檔 </label><label> (Ctrl+Q)</label>
         </div>
     </div>
 
@@ -83,14 +85,15 @@
         </div>
         <div class="horizontal">
             <label for="colorSlider" i18n="color"> 顏色 </label>
-            <input id="colorSlider" class="slider color" type="range" min="0" max="1" step="0.01"  />        </div>
+            <input id="colorSlider" class="slider color" type="range" min="0" max="1" step="0.01"  />
+        </div>
         <div class="horizontal">
             <label for="alphaSlider" i18n="alpha"> 透明度 </label>
             <input id="alphaSlider" class="slider transparency" type="range" min="0.15" max="1" step="0.01"  />
         </div>
         <h3  i18n="map"> 地圖 </h3>
         <div class="horizontal">
-            <label for="mapColorSlider" i18n="color"> 颜色 </label>
+            <label for="mapColorSlider" i18n="color"> 顏色 </label>
             <input id="mapColorSlider" class="slider color" type="range" min="0" max="360" step="1"  />
         </div>
         <div class="horizontal">
@@ -153,7 +156,7 @@
         </div>
     </div>
 
-    <h2 id="gpxTitle"><span i18n="gpxTitle"> 匯入GPX/KML </span><small>(F6)</small> </h2>
+    <h2 id="gpxTitle"><span i18n="gpxTitle"> GPX/KML </span><small>(F6)</small> </h2>
     <div id="gpx" class="vertical">
         <fieldset id="importGPX">
             <legend i18n="importGPX">匯入GPX/KML</legend>
@@ -162,10 +165,10 @@
             <input type="file" multiple id="inputGPX" style="display:none" accept=".gpx, .kml">
         </fieldset>
         <div id="saveGPXtoMap" class="horizontal">
-            <label i18n="saveGPXtoMap"> 寫入GPX/KML到存檔 </label><label></label>
+            <label i18n="saveGPXtoMap"> 寫入GPX/KML到存檔 </label><label id="saveGPXProcess"></label>
         </div>
         <div id="clearGPX" class="horizontal">
-            <label i18n="clearGPX"> 清理GPX/KML </label><label></label>
+            <label i18n="clearGPXLayer"> 移除所有 GPX/KML 圖層 </label><label></label>
         </div>
     </div>
 
